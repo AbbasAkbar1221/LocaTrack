@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+
+/* Custom Checkbox Style */
+.custom-checkbox {
+  position: relative;
+}
+
+
+.custom-checkbox:checked::before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 50%;  
+  height: 70%; 
+  border: solid #00235E;
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.custom-checkbox:checked {
+  background-color: white;
+  border-color: #00235E;
+}

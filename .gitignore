@@ -1,0 +1,63 @@
+# --- General ---
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+yarn.lock
+.pnpm-debug.log
+.DS_Store
+Thumbs.db
+
+# --- Frontend ---
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/.vercel/
+frontend/.env
+frontend/.env.local
+frontend/.env.development
+frontend/.env.production
+frontend/.env.test
+
+# --- Backend ---
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/.env
+backend/.env.local
+backend/.env.development
+backend/.env.production
+backend/.env.test
+
+# --- IDEs ---
+.vscode/
+.idea/
+*.swp
+
+# --- OS/System Files ---
+*.DS_Store
+*.bak
+*.tmp
+*.orig
+
+# --- Coverage / Reports ---
+coverage/
+.nyc_output/
+report-*.json
+test-report.xml
+
+# --- Misc ---
+*.tgz
+*.tar.gz
+*.log
+*.pem
+*.key
+*.crt
