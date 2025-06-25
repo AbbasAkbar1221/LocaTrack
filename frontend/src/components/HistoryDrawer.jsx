@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { HiOutlineClock, HiOutlineMapPin, HiOutlineTrash, HiOutlineXMark } from 'react-icons/hi2';
+import {
+  HiOutlineClock,
+  HiOutlineMapPin,
+  HiOutlineTrash,
+  HiOutlineXMark,
+} from 'react-icons/hi2';
 
 export default function HistoryDrawer({ isOpen, onClose }) {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      fetchHistory();
-    }
+    if (isOpen) fetchHistory();
   }, [isOpen]);
 
   const fetchHistory = async () => {
@@ -43,13 +46,15 @@ export default function HistoryDrawer({ isOpen, onClose }) {
     }
   };
 
-  const baseClasses = `bg-white shadow-xl transition-transform duration-300 ease-in-out flex flex-col h-full lg:h-full`;
-  const mobilePosition = `fixed inset-y-0 left-0 w-80 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-50`;
-  const desktopPosition = `hidden lg:block lg:relative lg:translate-x-0`;
-  const desktopDisplay = isOpen ? 'lg:block' : 'lg:hidden';
-
   return (
-    <div className={`${baseClasses} ${mobilePosition} ${desktopPosition} ${desktopDisplay}`}>
+    <div
+      className={`
+        h-full bg-white shadow-xl z-20 flex flex-col
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        w-72 sm:w-72 md:w-72 lg:w-80 overflow-x-hidden
+      `}
+    >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 bg-[#F0F0F0]">
         <div className="flex items-center space-x-2">
@@ -67,14 +72,14 @@ export default function HistoryDrawer({ isOpen, onClose }) {
         </button>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto bg-[#F0F0F0]">
         {isLoading ? (
           <div className="flex items-center justify-center py-8">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#00235E]" />
           </div>
         ) : entries.length > 0 ? (
-          <div className="py-2 bg-[#F0F0F0]">
+          <div className="py-2">
             {entries.map((entry, index) => (
               <div
                 key={entry._id || index}
@@ -104,9 +109,11 @@ export default function HistoryDrawer({ isOpen, onClose }) {
                   </div>
                 </button>
 
-                {/* Delete icon */}
                 <button
-                  onClick={() => deleteEntry(entry._id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteEntry(entry._id);
+                  }}
                   className="p-2 text-red-500 hover:text-red-600 transition-colors"
                   aria-label="Delete entry"
                 >

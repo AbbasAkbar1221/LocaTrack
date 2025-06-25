@@ -90,9 +90,7 @@ const SearchBar = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    return () => {
-      debouncedFetch.cancel();
-    };
+    return () => debouncedFetch.cancel();
   }, [debouncedFetch]);
 
   const selectSuggestion = (s) => {
@@ -147,30 +145,29 @@ const SearchBar = forwardRef((props, ref) => {
           onFocus={handleInputFocus}
           onKeyPress={handleKeyPress}
           placeholder={props.placeholder || 'Search Map'}
-          className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-300 rounded-full bg-gray-50 focus:bg-white focus:border-[#00235E] focus:outline-none focus:ring-1 focus:ring-[#00235E] transition-all"
+          className="w-full pl-10 pr-14 py-2.5 text-sm border border-gray-300 rounded-full bg-gray-50 focus:bg-white focus:border-[#00235E] focus:outline-none focus:ring-1 focus:ring-[#00235E] transition-all"
         />
 
-        {/* Clear button */}
-        {query && (
-          <button
-            type="button"
-            onClick={clearQuery}
-            className="absolute inset-y-0 right-8 pr-2 flex items-center"
-            aria-label="Clear search"
-          >
-            <FiX className="w-4 h-4 text-gray-500 hover:text-gray-700" />
-          </button>
-        )}
+        {/* Right-side icons: X and Spinner */}
+        <div className="absolute inset-y-0 right-0 flex items-center space-x-1 pr-3">
+          {query && (
+            <button
+              type="button"
+              onClick={clearQuery}
+              className="p-1"
+              aria-label="Clear search"
+            >
+              <FiX className="w-4 h-4 text-gray-500 hover:text-gray-700" />
+            </button>
+          )}
 
-        {/* Loading spinner */}
-        {isLoading && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#00235E]"></div>
-          </div>
-        )}
+          {isLoading && (
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#00235E]" />
+          )}
+        </div>
       </div>
 
-      {/* Suggestions */}
+      {/* Suggestions Dropdown */}
       {showSuggestions && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-80 overflow-y-auto z-30">
           {suggestions.length > 0 ? (
