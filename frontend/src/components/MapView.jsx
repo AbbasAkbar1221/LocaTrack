@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import axios from "axios";
+import { HiOutlineMapPin } from "react-icons/hi2";
+import { HiPlusSm, HiMinusSm } from "react-icons/hi";
 
 export default function MapView() {
   const [viewport, setViewport] = useState({
@@ -16,7 +18,6 @@ export default function MapView() {
   const mapRef = useRef();
 
   useEffect(() => {
-    // Try to get user location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
@@ -31,7 +32,6 @@ export default function MapView() {
             longitude: pos.coords.longitude,
             zoom: 13,
           }));
-          // Store origin for directions
           sessionStorage.setItem(
             "origin",
             JSON.stringify([pos.coords.latitude, pos.coords.longitude])
@@ -39,12 +39,11 @@ export default function MapView() {
         },
         (error) => {
           console.warn("Geolocation error:", error);
-          // Fallback to default location
         },
         {
           enableHighAccuracy: true,
           timeout: 10000,
-          maximumAge: 300000, // 5 minutes
+          maximumAge: 300000,
         }
       );
     }
@@ -58,14 +57,12 @@ export default function MapView() {
       setMarker({ latitude: lat, longitude: lng, address });
 
       try {
-        // Save to history
         await axios.post(`${import.meta.env.VITE_API_URL}/search`, {
           address,
           latitude: lat,
           longitude: lng,
         });
 
-        // Fetch directions if origin is available
         const origin = JSON.parse(sessionStorage.getItem("origin") || "null");
         if (origin) {
           setIsLoading(true);
@@ -89,7 +86,6 @@ export default function MapView() {
           }
         }
 
-        // Update viewport to show the selected location
         setViewport((v) => ({
           ...v,
           latitude: lat,
@@ -127,9 +123,7 @@ export default function MapView() {
         },
         (error) => {
           console.error("Geolocation error:", error);
-          alert(
-            "Unable to get your location. Please enable location services."
-          );
+          alert("Unable to get your location. Please enable location services.");
         }
       );
     }
@@ -160,23 +154,6 @@ export default function MapView() {
         )}
 
         {/* Destination marker */}
-        {/* {marker && (
-          <Marker 
-            latitude={marker.latitude} 
-            longitude={marker.longitude}
-            anchor="bottom"
-          >
-            <div className="flex flex-col items-center">
-              <div className="bg-red-500 text-white px-2 py-1 rounded text-xs font-medium mb-1 shadow-lg max-w-48 truncate">
-                {marker.address}
-              </div>
-              <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
-            </div>
-          </Marker>
-        )} */}
-
         {marker && (
           <Marker
             latitude={marker.latitude}
@@ -220,25 +197,7 @@ export default function MapView() {
           className="w-10 h-10 bg-white rounded-lg shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
           aria-label="Get current location"
         >
-          <svg
-            className="w-5 h-5 text-gray-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
+          <HiOutlineMapPin className="w-5 h-5 text-gray-600" />
         </button>
 
         {/* Zoom controls */}
@@ -250,19 +209,7 @@ export default function MapView() {
             className="w-10 h-10 flex items-center justify-center hover:bg-gray-50 transition-colors border-b border-gray-200"
             aria-label="Zoom in"
           >
-            <svg
-              className="w-4 h-4 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              />
-            </svg>
+            <HiPlusSm className="w-5 h-5 text-gray-600" />
           </button>
           <button
             onClick={() =>
@@ -271,19 +218,7 @@ export default function MapView() {
             className="w-10 h-10 flex items-center justify-center hover:bg-gray-50 transition-colors"
             aria-label="Zoom out"
           >
-            <svg
-              className="w-4 h-4 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20 12H4"
-              />
-            </svg>
+            <HiMinusSm className="w-5 h-5 text-gray-600" />
           </button>
         </div>
       </div>
