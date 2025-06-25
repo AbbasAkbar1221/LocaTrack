@@ -1,35 +1,115 @@
-# Full Stack Address Search Application
+# 🗺️ LocaTrack – Address Search and Location History App
 
-This repository contains a full stack application for address search with map display, history tracking, and directions using Mapbox.
+LocaTrack is a full-stack web application that allows users to search for locations using a debounced autocomplete search powered by Mapbox, view their location on an interactive map, and manage their location search history.
 
-## Structure
-- `backend/`: Node.js + Express backend
-- `frontend/`: React + Vite frontend with Tailwind CSS
+## 📌 Project Overview
 
-## Setup
+LocaTrack provides a seamless location search experience with the following key features:
 
-### Backend
-1. Navigate to `backend/`
-2. Copy `.env.example` to `.env` and fill in your `MONGO_URI`, `JWT_SECRET`, and `MAPBOX_API_KEY`.
-3. Install dependencies: `npm install`
-4. Run server: `npm run dev`
-   - Server runs on http://localhost:5000
+### ✨ Features
+
+- 🔍 **Debounced Address Autocomplete** – Powered by Mapbox Geocoding API for fast and accurate location suggestions
+- 🗺️ **Interactive Map** – Dynamic map display with user location and destination markers
+- 🧾 **Location Search History** – Persistent history drawer with delete functionality
+- 📦 **Full-Stack Solution** – Built with React, Node.js, Express, and MongoDB
+- 🎨 **Responsive Design** – Mobile-first UI using TailwindCSS
+- 🔒 **JWT Authentication** – Secure user session management
+- 🌐 **Cloud Deployment** – Deployed on Render (backend) and Vercel (frontend)
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
-1. Navigate to `frontend/`
-2. Copy `.env.example` to `.env` and fill in `VITE_MAPBOX_API_KEY` (and ensure `VITE_API_URL` matches your backend URL).
-3. Install dependencies: `npm install`
-4. Run dev server: `npm run dev`
-   - App runs on http://localhost:3000
 
-## Features
-- User authentication (signup/login) with JWT
-- Address autocomplete using Mapbox Geocoding API
-- Map display with Mapbox GL
-- Saving search history in MongoDB
-- Viewing and deleting past searches
-- Directions display between current location and selected address
+- ✅ React 18+ with Vite
+- 🎨 TailwindCSS for styling
+- 🗺️ Mapbox GL JS for maps
+- 🔗 Axios for API calls
 
-## Notes
-- Ensure your Mapbox account allows the required API usage.
-- For production, secure environment variables and consider HTTPS.
+### Backend
+
+- ⚙️ Node.js & Express.js
+- 💾 MongoDB with Mongoose ODM
+- 🔐 JWT for authentication
+- 📍 Mapbox Geocoding API integration
+
+---
+
+## 🚀 Quick Start
+
+### 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB (local or cloud instance)
+- Mapbox account and API key
+
+---
+
+## 📥 Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/locatrack.git
+cd locatrack
+```
+### 2. Set up the backend
+```bash
+cd backend
+npm install
+```
+#### Create a .env file in the /backend directory:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+MAPBOX_API_KEY=your_mapbox_token
+```
+#### Start the backend server:
+```bash
+# Development mode with nodemon
+npm run dev
+
+# Production mode
+npm start
+```
+### 3. Set up the frontend
+```bash
+cd ../frontend
+npm install
+```
+#### Create a .env file in the /frontend directory:
+```env
+VITE_API_URL=http://localhost:5000/api
+VITE_MAPBOX_API_KEY=your_mapbox_token
+```
+#### Start the frontend development server:
+```bash
+npm run dev
+```
+
+### 📱 Usage
+- 🔍 Search Location: Start typing in the search bar for autocomplete suggestions
+- 📌 Select Location: Click a suggestion to view it on the map
+- 🧭 View Route: Directions shown from your current location
+- 🧾 Search History: View or delete recent searches from the drawer
+- 📱 Mobile Friendly: Works smoothly on mobile devices
+
+### 📄 License
+This project is licensed under the MIT License.
+
+### 🧑‍💻 Developer
+Abbas Akbar – Full Stack Developer
+MIT, Dr. A.P.J. Abdul Kalam Technical University
+- GitHub: https://github.com/AbbasAkbar1221
+- LinkedIn: https://www.linkedin.com/in/abbas-akbar/
+
+
+
+
+
+
