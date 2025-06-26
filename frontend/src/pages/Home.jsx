@@ -9,8 +9,7 @@ export default function Home() {
   const toggleHistory = () => setHistoryOpen((prev) => !prev);
 
   return (
-    <div className="h-screen flex bg-gray-50 overflow-hidden relative sm:gap-x-6">
-      {/* Sidebar (always visible) */}
+    <div className="h-screen flex bg-gray-50 overflow-hidden relative sm:gap-x-6">      
       <div className="w-1/5 md:w-1/6 lg:w-[15%] bg-[#F0F0F0] flex flex-col items-center py-4 space-y-6 z-30">
         <img src="/Xsymbol.png" alt="Logo" className="w-12 h-12 rounded-full" />
         <button
@@ -30,14 +29,12 @@ export default function Home() {
         </button>
       </div>
 
-      {/* History Drawer next to sidebar (no absolute position!) */}
       {isHistoryOpen && (
         <div className="w-80 h-full overflow-y-auto bg-white shadow-xl z-20">
           <HistoryDrawer isOpen={true} onClose={() => setHistoryOpen(false)} />
         </div>
       )}
 
-      {/* Main Content (Map and Header) */}
       <div className="relative flex-1 h-full overflow-hidden">
         <div className="absolute inset-0">
           <MapView />

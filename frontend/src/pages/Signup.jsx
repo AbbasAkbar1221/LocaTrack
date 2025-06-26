@@ -53,9 +53,7 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-8">
-      {/* Container: on md and above, flex-row; on small, flex-col */}
       <div className="w-full max-w-5xl bg-gray-50 flex flex-col md:flex-row shadow-none">
-        {/* Left panel (brand/info) - hidden on small */}
         <div className="hidden md:flex md:w-1/2 lg:w-2/5 bg-gray-50 items-start justify-center px-8 h-screen">
           <div className="space-y-4">
              <img
@@ -70,10 +68,9 @@ export default function Signup() {
           </div>
         </div>
 
-        {/* Right panel / form */}
+        {/* Right panel */}
         <div className="w-full md:w-1/2 lg:w-3/5 flex items-center justify-center px-4 md:px-8">
           <div className="w-full max-w-md">
-            {/* On small screens, show logo/title at top */}
             <div className="md:hidden flex flex-col items-center text-center mb-6">
               <img
                 src="/Xsymbol.png"
@@ -86,10 +83,8 @@ export default function Signup() {
               </p>
             </div>
 
-            {/* Form card */}
             <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Email input */}
                 <fieldset className="relative border border-gray-300 rounded-lg px-3 py-2">
                   <legend className="text-sm text-gray-600 px-2 bg-white">
                     Enter your email address
@@ -103,7 +98,6 @@ export default function Signup() {
                     className="w-full border-0 focus:ring-0 focus:outline-none text-gray-900 placeholder-gray-400 bg-transparent"
                     required
                   />
-                  {/* Icons */}
                   {!email && (
                     <InformationCircleIcon className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" />
                   )}
@@ -119,7 +113,6 @@ export default function Signup() {
                   )}
                 </fieldset>
 
-                {/* Password input */}
                 <fieldset className="relative border border-gray-300 rounded-lg px-3 py-2">
                   <legend className="text-sm text-gray-600 px-2 bg-white">
                     Create a password
@@ -133,7 +126,6 @@ export default function Signup() {
                     className="w-full border-0 focus:ring-0 focus:outline-none text-gray-900 placeholder-gray-400 bg-transparent"
                     required
                   />
-                  {/* Show/hide toggle */}
                   <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
@@ -148,7 +140,6 @@ export default function Signup() {
                   </button>
                 </fieldset>
 
-                {/* Confirm Password input */}
                 <fieldset className="relative border border-gray-300 rounded-lg px-3 py-2">
                   <legend className="text-sm text-gray-600 px-2 bg-white">
                     Confirm your password
@@ -162,7 +153,6 @@ export default function Signup() {
                     className="w-full border-0 focus:ring-0 focus:outline-none text-gray-900 placeholder-gray-400 bg-transparent"
                     required
                   />
-                  {/* Show/hide toggle */}
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword((prev) => !prev)}
@@ -184,7 +174,6 @@ export default function Signup() {
                   </div>
                 )}
 
-                {/* Terms checkbox */}
                 <div className="flex items-center">
                   <input
                     id="terms"
@@ -207,7 +196,6 @@ export default function Signup() {
                   </label>
                 </div>
 
-                {/* Sign up button */}
                 <button
                   type="submit"
                   disabled={!termsAccepted || isLoading}
@@ -224,7 +212,6 @@ export default function Signup() {
                 </button>
               </form>
 
-              {/* Login link */}
               <div className="text-center">
                 <p className="text-sm text-gray-600">
                   Already have an account?{" "}

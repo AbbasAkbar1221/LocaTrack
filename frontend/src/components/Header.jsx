@@ -17,14 +17,12 @@ export default function Header() {
   return (
     <header className="relative bg-transparent shadow-none pointer-events-auto z-10">
       <div className="w-full px-3 py-3 sm:px-4 sm:py-4">
-        {/* Top row: searchbar + U button */}
         <div className="flex items-center justify-between space-x-2">
           <div className="flex items-center w-full max-w-2xl space-x-2">
             <div className="w-full sm:max-w-xs md:max-w-sm lg:max-w-md">
               <SearchBar ref={searchBarRef} placeholder="Search Map" />
             </div>
 
-            {/* Desktop only: Search button */}
             <button
               type="button"
               onClick={handleSearchClick}
@@ -35,7 +33,6 @@ export default function Header() {
             </button>
           </div>
 
-          {/* U button (visible on all devices) */}
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
@@ -47,7 +44,6 @@ export default function Header() {
 
             {showMenu && (
               <>
-                {/* Mobile backdrop */}
                 <div
                   className="fixed inset-0 z-10 sm:hidden"
                   onClick={() => setShowMenu(false)}
@@ -68,7 +64,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile only: Search button below bar */}
         <div className="mt-2 flex justify-end sm:hidden">
           <button
             type="button"

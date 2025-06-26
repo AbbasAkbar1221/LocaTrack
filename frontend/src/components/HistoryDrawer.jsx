@@ -55,14 +55,12 @@ export default function HistoryDrawer({ isOpen, onClose }) {
         w-72 sm:w-72 md:w-72 lg:w-80 overflow-x-hidden
       `}
     >
-      {/* Header */}
       <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 bg-[#F0F0F0]">
         <div className="flex items-center space-x-2">
           <HiOutlineClock className="w-5 h-5 text-gray-600" />
           <h2 className="text-lg font-semibold text-gray-900">Recent</h2>
         </div>
 
-        {/* Close button on mobile only */}
         <button
           onClick={onClose}
           className="p-1 rounded-md hover:bg-gray-200 transition-colors lg:hidden"
@@ -72,7 +70,6 @@ export default function HistoryDrawer({ isOpen, onClose }) {
         </button>
       </div>
 
-      {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto bg-[#F0F0F0]">
         {isLoading ? (
           <div className="flex items-center justify-center py-8">

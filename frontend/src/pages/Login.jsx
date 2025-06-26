@@ -45,9 +45,8 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-8">
-      {/* Container: on md and above, flex-row; on small, flex-col */}
       <div className="w-full max-w-5xl bg-gray-50 flex flex-col md:flex-row shadow-none">
-        {/* Left panel (brand/info) - hidden on small */}
+        {/* Left panel */}
 
         <div className="hidden md:flex md:w-1/2 lg:w-2/5 bg-gray-50 items-start justify-center px-4 py-8 h-screen">
           <div className="space-y-4">
@@ -63,10 +62,9 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Right panel / form */}
+        {/* Right panel */}
         <div className="w-full md:w-1/2 lg:w-3/5 flex items-end justify-center px-4 md:px-8">
           <div className="w-full max-w-md ">
-            {/* On small screens, show logo/title at top */}
             <div className="md:hidden text-center mb-6 flex flex-col items-center space-y-4 justify-center">
               <img
                 src="/logo.png"
@@ -80,10 +78,8 @@ export default function Login() {
               </p>
             </div>
 
-            {/* Form card */}
             <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Email input */}
                 <fieldset className="relative border border-gray-300 rounded-lg px-3 py-2">
                   <legend className="text-sm text-gray-600 px-2 bg-white">
                     Enter address
@@ -97,7 +93,6 @@ export default function Login() {
                     className="w-full border-0 focus:ring-0 focus:outline-none text-gray-900 placeholder-gray-400 bg-transparent"
                     required
                   />
-                  {/* Icons */}
                   {!email && (
                     <InformationCircleIcon className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" />
                   )}
@@ -113,7 +108,6 @@ export default function Login() {
                   )}
                 </fieldset>
 
-                {/* Password input */}
                 <div className="space-y-1">
                   <fieldset className="relative border border-gray-300 rounded-lg px-3 py-2">
                     <legend className="text-sm text-gray-600 px-2 bg-white">
@@ -128,7 +122,6 @@ export default function Login() {
                       className="w-full border-0 focus:ring-0 focus:outline-none text-gray-900 placeholder-gray-400 bg-transparent"
                       required
                     />
-                    {/* Show/hide toggle */}
                     <button
                       type="button"
                       onClick={() => setShowPassword((prev) => !prev)}
@@ -145,11 +138,9 @@ export default function Login() {
                     </button>
                   </fieldset>
 
-                  {/* Forgot password link positioned to the right, below input */}
                   <div className="text-right mt-1">
                     <button
                       type="button"
-                      // onClick={() => navigate("/forgot-password")}
                       className="text-xs text-gray-500 hover:text-gray-700"
                     >
                       FORGOT PASSWORD?
@@ -164,7 +155,6 @@ export default function Login() {
                   </div>
                 )}
 
-                {/* Terms checkbox */}
                 <div className="flex items-center">
                   <input
                     id="terms"
@@ -180,6 +170,7 @@ export default function Login() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#00235E] hover:underline"
+                      onClick={(e) => e.preventDefault()}
                     >
                       terms & policy
                     </a>
@@ -187,7 +178,6 @@ export default function Login() {
                   </label>
                 </div>
 
-                {/* Login button */}
                 <button
                   type="submit"
                   disabled={!termsAccepted || isLoading}
@@ -204,20 +194,15 @@ export default function Login() {
                 </button>
               </form>
 
-              {/* Or separator */}
               <div className="flex items-center justify-center space-x-3">
                 <span className="h-px w-8 bg-gray-300"></span>
                 <span className="text-sm text-gray-500">Or</span>
                 <span className="h-px w-8 bg-gray-300"></span>
               </div>
 
-              {/* Social sign-in buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   type="button"
-                  onClick={() => {
-                    /* handle Google sign-in */
-                  }}
                   className="flex-1 flex items-center justify-center border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
                 >
                   <FcGoogle className="w-5 h-5 mr-2" />
@@ -227,9 +212,6 @@ export default function Login() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => {
-                    /* handle Apple sign-in */
-                  }}
                   className="flex-1 flex items-center justify-center border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
                 >
                   <FaApple className="w-5 h-5 mr-2 text-gray-800" />
